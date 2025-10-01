@@ -27,8 +27,19 @@ from lib.carrier import *
 
 
 import subprocess
+import signal
+
 
 # ------------------------------------------------
+
+
+def handler(sig, frame):
+    plt.close("all")
+    sys.exit(0)
+
+
+signal.signal(signal.SIGINT, handler)
+signal.signal(signal.SIGTERM, handler)
 
 
 def xds110_reset_via_ccs():
